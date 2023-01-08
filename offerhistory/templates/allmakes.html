@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Find and compares deals on new cars - CarDealTracker.ca{% endblock %}
+{% block desc_meta %}Curious what kind of deals have been offered on new cars in the past? We've been tracking them.{% endblock %}
+
+{% block content %}
+{% load static %}
+<!-- Masthead-->
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Heading-->
+        <h2 class="masthead-heading text-uppercase mb-0">Select a Make</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">Choose the Make of vehicle you are interested in to see what kind of deals have been available in the past.
+    </div>
+</header>
+<!-- Portfolio Section-->
+<section class="page-section portfolio" id="portfolio">
+    <div class="row justify-content-center">
+        {% for instance in object_list %}
+
+        {% if forloop.counter == 1 %}
+        <div class="col-md-6 col-lg-4 mb-5">
+            <div class="portfolio-item mx-auto justify-content-center h-100 w-100" style="padding: 5px; border: dotted black">
+                {% endif %}
+                {% if forloop.counter == 11 %}
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-5">
+            <div class="portfolio-item mx-auto justify-content-center h-100 w-100" style="padding: 5px; border: dotted black">
+                {% endif %}
+                {% if forloop.counter == 22 %}
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-5">
+            <div class="portfolio-item mx-auto justify-content-center h-100 w-100" style="padding: 5px; border: dotted black">
+                {% endif %}
+                <h3><a href="/make/{{instance.carmake}}">{{instance.carmake}}</a></h3>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

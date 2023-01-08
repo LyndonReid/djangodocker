@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Find all deals on {{carmake}}'s for the past year - CarDealTracker.ca{% endblock %}
+{% block desc_meta %}Curious what kind of deals have been offered on new {{carmakes}}'s cars in the past? We've been tracking them.{% endblock %}
+
+{% block content %}
+{% load static %}
+<!-- Masthead-->
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Heading-->
+        <h2 class="masthead-heading text-uppercase mb-0">Here a list of Offerings by: {{carmake}} </h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">Use the information below to understand how generous the
+            dealer has been with factory incentives in the past and compare them to what is being offered today.
+    </div>
+</header>
+
+<div class="container d-flex align-items-center flex-column">
+    <!-- todo clean up html-->
+
+    <div class="container d-flex align-items-center flex-column">
+        <br />
+        <h5>Filter By Model</h5>
+        {% for instance in distinctmodels %}<a href="/make/{{instance.carmake}}/model/{{instance.carmodel}}">{{instance.carmodel}}</a>
+        {% endfor %}
+    </div>
+    <br />
+</div>
+<div class="container d-flex align-items-left flex-column">
+
+    <table class="table" style="font-size: .8em;" id="demo">
+        <thead>
+            <tr>
+                <th scope="col">Offer Month</th>
+                <th scope="col">Model Year</th>
+                <th scope="col">Make</th>
+                <th scope="col">Model</th>
+                <th scope="col">Trim</th>
+                <th scope="col">Offer Details</th>
+                <th scope="col">Offer Type</th>
+                <th scope="col">Region</th>
+            </tr>
+        </thead>
+        {% for instance in makeoffers %}
+
+        <tr>
+            <td>{{instance.offermonth}}</td>
+            <td>{{instance.caryear}}</td>
+            <td>{{instance.carmake}}</td>
+            <td>{{instance.carmodel}}</td>
+            <td>{{instance.cartrim}}</td>
+            <td>{{instance.offerdetailsummary}}</td>
+            <td>{{instance.offertype}}</td>
+            <td>{{instance.offerlocation}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    <script src="{% static 'js/tablefilter/tablefilter.js' %}"></script>
+
+    <script data-config>
+        var filtersConfig = {
+            base_path: "{% static 'js/tablefilter/' %}",
+            col_1: 'select',
+            col_2: 'select',
+            col_3: 'select',
+            col_4: 'select',
+            col_5: 'select',
+            col_6: 'select',
+            col_7: 'select',
+            col_8: 'select',
+
+            alternate_rows: true,
+            rows_counter: true,
+            btn_reset: true,
+            loader: true,
+            status_bar: true,
+            mark_active_columns: true,
+            highlight_keywords: true,
+            col_types: [
+                'string', 'number', 'string',
+                'string', 'string', 'string',
+                'string', 'string'
+            ],
+            custom_options: {
+                cols: [8],
+
+                sorts: [false]
+            },
+
+            extensions: [{ name: 'sort' }]
+        };
+
+        var tf = new TableFilter('demo', filtersConfig);
+        tf.init();
+
+    </script>
+
+</div>
+{% endblock %}

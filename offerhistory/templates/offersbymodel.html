@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block page_title %}Find all deals on {{carmodel}}'s for the past year - CarDealTracker.ca{% endblock %}
+{% block desc_meta %}Curious what kind of deals have been offered on new {{carmodel}}'s cars in the past? We've been tracking them.{% endblock %}
+
+
+
+{% block content %}
+{% load static %}
+<!-- Masthead-->
+
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Heading-->
+        <h2 class="masthead-heading text-uppercase mb-0">Here a list of Offerings: {{carmake}} {{carmodel}}</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">Use the information below to understand how generous the
+            dealer has been with factory incentives in the past and compare them to what is being offered today.
+    </div>
+</header>
+<!-- Portfolio Section-->
+
+<section class="page-section portfolio" id="portfolio">
+
+
+    <div class="container d-flex align-items-left flex-column" style="margin: auto;">
+        <div class="container d-flex align-items-center flex-column">Filter by your exact search criteria<br /><br /> </div>
+
+        
+        <div class="container d-flex align-items-center flex-column"  style="margin: auto;">
+
+            <table class="table" style="font-size: .8em;" id="demo">
+                <thead>
+                    <tr>
+                        <th data-field="start-date" scope="col" data-filter-control="select" data-sortable="true">Month
+                        </th>
+                        <th data-field="model-year" scope="col" data-filter-control="select" data-sortable="true">Yr - Make</th>
+                        <th data-field="model" scope="col" data-filter-control="select" data-sortable="true">Model</th>
+                        <th data-field="trim" scope="col" data-filter-control="select" data-sortable="true">Trim</th>
+                        <th data-field="offer-details" scope="col" data-filter-control="select" data-sortable="true">
+                            Offer Details</th>
+                        <th data-field="offer-type" scope="col" data-filter-control="select" data-sortable="true">
+                            Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for instance in offers %}
+
+                    <tr>
+                        <td>
+                            {{instance.offermonth}}
+                        </td>
+
+                        <td>
+                            {{instance.caryear}} - {{instance.carmake}}</td>
+                        <td>{{instance.carmodel}}</td>
+                        <td>{{instance.cartrim}}</td>
+                        <td>{{instance.offerdetailsummary}}</td>
+                        <td>{{instance.offertype}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <script src="{% static 'js/tablefilter/tablefilter.js' %}"></script>
+
+        <script data-config>
+            var filtersConfig = {
+                base_path: "{% static 'js/tablefilter/' %}",
+                col_0: 'select',
+                col_1: 'select',
+                col_2: 'select',
+                col_3: 'select',
+                col_4: 'select',
+                col_5: 'select',
+               
+    
+                alternate_rows: true,
+                rows_counter: false,
+                btn_reset: true,
+                loader: true,
+                status_bar: true,
+                mark_active_columns: true,
+                highlight_keywords: true,
+                
+                col_types: [
+                    'string', 'string', 'string',
+                    'string', 'string', 'string'
+                ],
+                custom_options: {
+                    cols: [6],
+                        sorts: [false]
+                },
+                extensions: [{ name: 'sort' }],
+                themes: [{ name: 'transparent' }]
+
+                        // allows Bootstrap table styling
+
+            };
+    
+            var tf = new TableFilter('demo', filtersConfig);
+            tf.init();
+    
+        </script>
+    
+
+
+</section>
+
+{% endblock %}

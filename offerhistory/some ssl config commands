@@ -1,0 +1,35 @@
+sudo mv /home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs/server.crt /home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs/server.crt.old
+    sudo mv /home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs/server.key /home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs/server.key.old
+sudo ln -sf /home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs/cardealtracker.key /home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs/server.key
+sudo ln -sf /home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs/cardealtracker.crt /home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs/server.crt
+sudo chown root:root /home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs/server*
+sudo chmod 600 /home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs/server*
+
+
+
+
+sftp://ubuntu@35.183.223.125/home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs/server.crt
+
+
+Generate key:
+openssl genrsa -out cardealtracker.key 2048
+
+generate csr
+openssl req -new -key cardealtracker.key -out cardealtracker.csr
+
+Download CSR from Root on FTP
+
+Copy to this folder:
+/home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs
+
+Use CSR to generate a CRT with the host
+
+upload cert to 
+/home/ubuntu/offerhistory/opt/bitnami/apache2/conf/bitnami/certs
+
+
+source ./offerhistoryenv/bin/activate
+
+
+sudo /home/ubuntu/offerhistory/opt/bitnami/ctlscript.sh start
+

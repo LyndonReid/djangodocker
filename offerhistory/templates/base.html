@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="{% block desc_meta %}{% endblock %}" />
+    <meta name="author" content="" />
+    <title>{% block page_title %}{% endblock %}</title>
+    <!-- Favicon-->
+    <link rel="preconnect" href="https://fonts.gstatic.com/" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+    <!-- Font Awesome icons (free version) -->
+    <link href="{% static 'css/fontawesome/css/all.css' %}" rel="stylesheet"> 
+    <!-- Google fonts-->
+    <!--<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />-->
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DNC1GW7MJZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DNC1GW7MJZ');
+</script
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="/">Car Deal Tracker</a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Select Make and Model
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1">&nbsp;&nbsp;&nbsp;&nbsp;
+                </li>
+                    <li class="nav-item mx-0 mx-lg-1"><select name="ddMakes" id="ddMakes" class="form-select">
+                            <option value="Select Make">Select Make</option>
+                            {% for item in allmakes %}
+                            <option value="{{item.carmake}}">{{item.carmake}}</option>
+                            {% endfor %}
+                        </select>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1"><select name="ddModels" id="ddModels" class="form-select">
+                            <option>Select Model</option>
+                        </select>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1"> <select id='ddProv' class="form-select">
+                            <option value="Alberta">Alberta</option>
+                            <option value="British Columbia">British Columbia</option>
+                            <option value="Manitoba">Manitoba</option>
+                            <option value="New Brunswick">New Brunswick</option>
+                            <option value="Newfoundland">Newfoundland and Labrador</option>
+                            <option value="Nova Scotia">Nova Scotia</option>
+                            <option value="Ontario">Ontario</option>
+                            <option value="Prince Edward Island">Prince Edward Island</option>
+                            <option value="Quebec">Quebec</option>
+                            <option value="Saskatchewan">Saskatchewan</option>
+                            <option value="Northwest Territories">Northwest Territories</option>
+                            <option value="Nunavut">Nunavut</option>
+                            <option value="Yukon">Yukon</option>
+                        </select></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Masthead-->
+
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- Footer-->
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <!-- Footer Location-->
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">You are safe here</h4>
+                    <p class="lead mb-0">
+                        No predatory dealers<br />
+                        No dealer advertisments<br />
+                        No sharing your data with dealers <br />
+                    </p>
+                </div>
+                <!-- Footer Social Icons-->
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Around the Web</h4>
+                    <!--<a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>-->
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/jessica_lake_81"><i class="fab fa-fw fa-twitter"></i></a>
+                    <!--<a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>-->
+                        <!--<a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>-->
+                </div>
+                <!-- Footer About Text-->
+                <div class="col-lg-4">
+                    <h4 class="text-uppercase mb-4">More Car Deal Tracker</h4>
+                    
+                        <a class="text-white" href="/about/">About Us</a><br>
+                 
+                    
+                </div>
+               
+            </div>
+        </div>
+    </footer>
+    <!-- Copyright Section-->
+    <div class="copyright py-4 text-center text-white">
+                        <!-- Footer About Text-->
+                            <p>Buying cars is the worst! Car Deal Tracker was born to make the process a little bit simplier. Car Deal Tracker is 100% devoted helping shoppers save. Other services pretend that's their focus but they really just sell your information to greedy dealers. </p>
+                        <br>
+        <div class="container"><small>Copyright &copy; CarDealTracker.ca&nbsp; 2021</small></div>
+    </div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    
+
+    <!-- Custom JS-->
+    <script>
+        //THE DOCUMENT IS READY
+        $(document).ready(function () {
+
+            //#### SET THE SELECTED MAKE #### 
+            for (var i = 0; i < document.getElementById('ddMakes').options.length; i++) {
+                var strMake = "{{request.session.make}}";
+                if (document.getElementById('ddMakes').options[i].text == strMake) {
+                    document.getElementById('ddMakes').options[i].selected = true;
+                }
+            }
+            //#### SET THE SELECTED MAKE ####
+
+            //#### GET THE MODELS 
+            var optionSelected = $('select#ddMakes').find("option:selected");
+            var valueSelected = optionSelected.val();
+            var selectedmake = optionSelected.text();
+
+            mydata = { 'selectedmake': selectedmake };
+            $.ajax({
+                url: "/getModelsAjax",
+                type: "POST",
+                data: mydata,
+                cache: false,
+                dataType: "json",
+                success: function (resp) {
+                    console.log("in the ");
+                    $("#ddModels option").remove();
+                    $("#ddModels").append('<option>' + "Select Model" + '</option>')
+                    var strModels = "{{request.session.model}}";
+                    for (var i = 0; i < resp.length; i++) {
+                        if (resp[i].name == strModels) {
+                            $("#ddModels").append('<option selected=true>' + resp[i].name + '</option>');
+                        } else {
+                            $("#ddModels").append('<option>' + resp[i].name + '</option>');
+                        }
+                    };
+                }
+            });
+            //#### GET THE MODELS
+
+            //### SELECT THE MODEL 
+            for (var i = 0; i < document.getElementById('ddModels').options.length; i++) {
+                var strModels = "{{request.session.model}}";
+                console.log(strModels)
+                if (document.getElementById('ddModels').options[i].text == strModels) {
+                    document.getElementById('ddModels').options[i].selected = true;
+                }
+            }
+            //### SELECT THE MODEL 
+
+
+            //#### ON CHANGE OF THE MAKE RELOAD AVAILABLE MODELS
+            $('select#ddMakes').change(function () {
+                var optionSelected = $(this).find("option:selected");
+                var valueSelected = optionSelected.val();
+                var selectedmake = optionSelected.text();
+
+                mydata = { 'selectedmake': selectedmake };
+                $.ajax({
+                    url: "/getModelsAjax",
+                    type: "POST",
+                    data: mydata,
+                    cache: false,
+                    dataType: "json",
+                    success: function (resp) {
+                        $("#ddModels option").remove();
+                        $("#ddModels").append('<option>' + "Select Model" + '</option>')
+                        for (var i = 0; i < resp.length; i++) {
+                            $("#ddModels").append('<option>' + resp[i].name + '</option>');
+                        };
+
+                    }
+                });
+            });
+
+            //#### ON CHANGE - SET MODEL and Redirect
+            $('select#ddModels').change(function () {
+                var optionSelected = $(this).find("option:selected");
+                var valueSelected = optionSelected.val();
+                var selectedModel = optionSelected.text();
+                var selectedMake = $('select#ddMakes').find("option:selected").val();
+
+                mydata = { 'selectedModel': selectedModel };
+                $.ajax({
+                    url: "/setModelAjax",
+                    type: "POST",
+                    data: mydata,
+                    cache: false,
+                    dataType: "json",
+                    success: function (resp) {
+                        console.log("Success Set the model");
+                        location.href = "/make/" + selectedMake + "/model/" + selectedModel
+                    }
+                });
+            });
+            //#### ON CHANGE - SET MODEL
+        });
+        //#### ON CHANGE OF THE MAKE RELOAD THE MODELS
+
+        //AJAX to set cookie on province
+        $(document).ready(function () {
+            //province has changed
+            $('select#ddProv').change(function () {
+                var optionSelected = $(this).find("option:selected");
+                var valueSelected = optionSelected.val();
+                var selectedprov = optionSelected.text();
+
+                mydata = { 'selectedLocation': selectedprov };
+                $.ajax({
+                    url: "/setLocationAjax",
+                    type: "POST",
+                    data: mydata,
+                    cache: false,
+                    dataType: "json",
+                    success: function (resp) {
+                        console.log("Success Set the Prov");
+                        location.href = location.href;
+                    }
+                });
+            });
+        });
+
+        //select the current value for selProv
+        for (var i = 0; i < document.getElementById('ddProv').options.length; i++) {
+            var testvar = "{{request.session.offerlocation}}";
+            if (document.getElementById('ddProv').options[i].text == testvar) {
+                document.getElementById('ddProv').options[i].selected = true;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

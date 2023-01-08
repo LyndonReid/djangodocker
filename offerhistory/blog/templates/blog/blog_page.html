@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<!-- Masthead-->
+<header class="masthead bg-primary text-white text-center ">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Heading-->
+        <h1 class="age-section-heading text-center text-uppercase mb-0">Car Deal Tracker Education Zone</h1>
+    </div>
+</header>
+
+<!-- Page content-->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1">{{ page.title }}</h1>
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2">Last Updated on {{ post.latest_revision_created_at }} by Jessica Lake</div>
+                    <!-- Post categories-->
+<!--
+                    {% with categories=page.categories.all %}
+                    {% if categories %}
+                    {% for category in categories %}
+                    <a class="badge bg-secondary text-decoration-none link-light" href="/categories/">{{ category.name }}</a>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <p class="block">"{{ page.intro }}"</p>
+-->
+                </header>
+                <!-- Preview image figure
+                <figure class="mb-4">
+                    
+                    
+                    <img class="img-fluid rounded"
+                        src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure> -->
+                <!-- Post content-->
+                <section class="mb-5">
+                    {{ page.body|richtext }}
+                    <!--
+                    {% for item in page.gallery_images.all %}
+                    <div style="float: left; margin: 10px">
+                        {% image item.image fill-320x240 %}
+                        <p>{{ item.caption }}</p>
+                    </div>
+                    {% endfor %}
+                    -->
+                    {% if page.tags.all.count %}
+                    <p>
+                        {% for tag in page.tags.all %}
+                        <!--<a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>-->
+                        <a class="badge bg-secondary text-decoration-none link-light" href="/categories/">{{ tag }}</a>
+                        {% endfor %}
+                    </p>
+                    {% endif %}
+
+
+                    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+                </section>
+            </article>
+        </div>
+        <!-- Side widgets-->
+        <div class="col-lg-4">
+            <!-- Search widget-->
+            <div class="card mb-4">
+                <div class="card-header">Search</div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="Enter search term..."
+                            aria-label="Enter search term..." aria-describedby="button-search" />
+                        <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Categories widget-->
+<!--
+            <div class="card mb-4">
+                <div class="card-header">Get a Deal</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#!">Web Design</a></li>
+                                <li><a href="#!">HTML</a></li>
+                                <li><a href="#!">Freebies</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#!">JavaScript</a></li>
+                                <li><a href="#!">CSS</a></li>
+                                <li><a href="#!">Tutorials</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+-->
+            <!-- Side widget-->
+            <div class="card mb-4">
+                <div class="card-header">It's Deal Time</div>
+                <div class="card-body">Buying cars is the worst! Car Deal Tracker was born to make the process a little bit simplier. Car Deal Tracker is 100% devoted helping shoppers save. Other services pretend that's their focus but they really just sell your information to greedy dealers.
+
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- About Section-->
+<section class="page-section bg-primary text-white mb-0" id="about">
+    <div class="container">
+        <!-- About Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"> </i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- About Section Content-->
+        <div class="row">
+            <div class="col-lg-4 ml-auto">
+                <p class="lead">It doesn't get much simplier. We keep track of incentives offered by dealers in Canada
+                    so
+                    that you can ensure that you are timing your purchase correctly.</p>
+            </div>
+            <div class="col-lg-4 ml-auto">
+                <p class="lead">It doesn't matter if you are looking for good finance rates, cash deals, or lease terms.
+                    We keep track of it all.<br>
+                    Just check the history to see how frequently it's offered and if it is worth waiting for.</p>
+            </div>
+            <div class="col-lg-4 ml-auto">
+                <p class="lead">Oh, and of course this is 100% FREE. It was made with LOVE because I got pissed off at
+                    slick
+                    sales man trying to fleece me Screw their tactics</p>
+            </div>
+        </div>
+        <!-- About Section Button-->
+        <div class="text-center mt-4"> <a class="btn btn-xl btn-outline-light" href="makes/"> <i
+                    class="fas fa-download mr-2"></i> Let's Save! </a> </div>
+    </div>
+</section>
+
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+<div class="scroll-to-top d-lg-none position-fixed"> <a class="js-scroll-trigger d-block text-center text-white rounded"
+        href="#page-top"><i class="fa fa-chevron-up"></i></a> </div>
+
+{% endblock %}
